@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import kotlinx.android.synthetic.main.item_view.*
 
 class ScienceActivity : AppCompatActivity(), NewsItemClicked {
 
@@ -25,6 +26,7 @@ class ScienceActivity : AppCompatActivity(), NewsItemClicked {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         fetchData()
+        fetchSource()
         mAdapter = NewsListAdapter(this)
         recyclerView.adapter = mAdapter
     }
@@ -44,11 +46,13 @@ class ScienceActivity : AppCompatActivity(), NewsItemClicked {
                         newsJsonObject.getString("title"),
                         newsJsonObject.getString("author"),
                         newsJsonObject.getString("url"),
-                        newsJsonObject.getString("urlToImage")
+                        newsJsonObject.getString("urlToImage"),
+                        newsJsonObject.getString("content"),
+                        newsJsonObject.getString("publishedAt")
+//                        newsJsonObject.getString("source")
                     )
                     newsArray.add(news)
                 }
-
                 mAdapter.updateNews(newsArray)
             },
             Response.ErrorListener {
@@ -64,6 +68,40 @@ class ScienceActivity : AppCompatActivity(), NewsItemClicked {
         }
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
+
+    private fun fetchSource() {
+
+        val url ="https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=6f05a43b852841dba1b77fc941d95ac7"
+        val jsonObjectRequest = object : JsonObjectRequest(
+            Request.Method.GET,
+            url,
+            null,
+            Response.Listener {
+                val newsJsonArray = it.getJSONArray("source")
+                val newsArray = ArrayList<Source>()
+                for (i in 0 until newsJsonArray.length()) {
+                    val newsJsonObject = newsJsonArray.getJSONObject(i)
+                    val news = Source(
+                        newsJsonObject.getString("name")
+                    )
+                    newsArray.add(news)
+                }
+                mAdapter.updateNews(newsArray)
+            },
+            Response.ErrorListener {
+                Toast.makeText(this, "Error Fetching News", Toast.LENGTH_LONG).show()
+            }
+
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["User-Agent"] = "Mozilla/5.0"
+                return headers
+            }
+        }
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+}
+
 
     override fun onItemClicked(item: News) {
         val builder =  CustomTabsIntent.Builder()

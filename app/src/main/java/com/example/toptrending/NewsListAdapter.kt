@@ -29,13 +29,15 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
         val currentItem = items[position]
         holder.titleView.text = currentItem.title
         holder.author.text = currentItem.author
+        holder.description.text = currentItem.content
+        holder.publishedAt.text = currentItem.publishedAt
+//        holder.sources.text = currentItem.source
         Glide.with(holder.itemView.context).load(currentItem.imageUrl).into(holder.image)
     }
 
     fun updateNews(updatedNews: ArrayList<News>) {
         items.clear()
         items.addAll(updatedNews)
-
         notifyDataSetChanged()
     }
 }
@@ -44,6 +46,10 @@ class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val titleView: TextView = itemView.findViewById(R.id.title)
     val image: ImageView = itemView.findViewById(R.id.image)
     val author: TextView = itemView.findViewById(R.id.author)
+    val description : TextView = itemView.findViewById(R.id.description)
+    val publishedAt : TextView = itemView.findViewById(R.id.publishedAt)
+//    val sources : TextView = itemView.findViewById(R.id.source)
+
 }
 
 interface NewsItemClicked {
