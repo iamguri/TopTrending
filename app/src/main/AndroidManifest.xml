@@ -10,7 +10,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TopTrending">
+        <activity android:name=".TopTrendingActivity"/>
+        <activity android:name=".BusinessActivity"/>
         <activity android:name=".ScienceActivity"/>
+        <activity android:name=".BBCActivity"/>
+        <activity android:name=".SportsActivity"/>
+        <activity android:name=".TechnologyActivity"/>
+        <activity android:name=".TimesOfIndiaActivity"/>
+        <activity android:name=".NDTVActivity"/>
+        <activity android:name=".FarmerActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

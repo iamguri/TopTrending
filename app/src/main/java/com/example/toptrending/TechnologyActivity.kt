@@ -1,9 +1,9 @@
 package com.example.toptrending
 
+
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +13,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.item_view.*
 
-class ScienceActivity : AppCompatActivity(), NewsItemClicked {
+class TechnologyActivity : AppCompatActivity(), NewsItemClicked {
 
     private lateinit var mAdapter: NewsListAdapter
 
@@ -33,8 +33,7 @@ class ScienceActivity : AppCompatActivity(), NewsItemClicked {
     }
 
     private fun fetchData() {
-        progress_bar.visibility = View.VISIBLE
-        val url = "https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=6f05a43b852841dba1b77fc941d95ac7"
+        val url = "https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=6f05a43b852841dba1b77fc941d95ac7"
         val jsonObjectRequest = object: JsonObjectRequest(
             Request.Method.GET,
             url,

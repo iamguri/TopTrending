@@ -1,9 +1,9 @@
 package com.example.toptrending
 
+
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +13,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.item_view.*
 
-class ScienceActivity : AppCompatActivity(), NewsItemClicked {
+class NDTVActivity : AppCompatActivity(), NewsItemClicked {
 
     private lateinit var mAdapter: NewsListAdapter
 
@@ -24,7 +24,6 @@ class ScienceActivity : AppCompatActivity(), NewsItemClicked {
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
 
-
         recyclerView.layoutManager = LinearLayoutManager(this)
         fetchData()
 
@@ -33,8 +32,7 @@ class ScienceActivity : AppCompatActivity(), NewsItemClicked {
     }
 
     private fun fetchData() {
-        progress_bar.visibility = View.VISIBLE
-        val url = "https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=6f05a43b852841dba1b77fc941d95ac7"
+        val url = "http://newsapi.org/v2/everything?domains=wsj.com&apiKey=6f05a43b852841dba1b77fc941d95ac7"
         val jsonObjectRequest = object: JsonObjectRequest(
             Request.Method.GET,
             url,
@@ -49,7 +47,7 @@ class ScienceActivity : AppCompatActivity(), NewsItemClicked {
                         newsJsonObject.getString("author"),
                         newsJsonObject.getString("url"),
                         newsJsonObject.getString("urlToImage"),
-                        newsJsonObject.getString("description"),
+                        newsJsonObject.getString("content"),
                         newsJsonObject.getString("publishedAt")
 //                        newsJsonObject.getString("source")
                     )
@@ -70,8 +68,6 @@ class ScienceActivity : AppCompatActivity(), NewsItemClicked {
         }
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
-
-
 
     override fun onItemClicked(item: News) {
         val builder =  CustomTabsIntent.Builder()
