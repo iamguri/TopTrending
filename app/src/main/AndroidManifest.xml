@@ -19,7 +19,9 @@
         <activity android:name=".TimesOfIndiaActivity"/>
         <activity android:name=".NDTVActivity"/>
         <activity android:name=".FarmerActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+<!--        <activity android:name=".SplashScreenActivity"/>-->
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,5 +29,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

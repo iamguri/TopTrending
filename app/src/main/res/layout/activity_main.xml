@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="8"
-    android:background="#1158C5"
+    android:background="@color/primary_variant"
     tools:context=".MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,31 +19,30 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_baseline_trending_up_24" />
+            android:src="@drawable/ic_trending" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Top Headlines India"
             android:textAllCaps="true"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/trending"
             android:textSize="20dp"
-
             android:layout_marginTop="5dp"
             />
     </RelativeLayout>
 
     <GridLayout
-        android:background="@drawable/icon_background"
+        android:background="@color/secondary_variant"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
         android:rowCount="4"
         android:columnCount="2"
         android:padding="10dp"
-        android:layout_marginTop="5dp">
-
+        android:layout_marginTop="5dp"
+        >
         <androidx.cardview.widget.CardView
             android:id="@+id/science_icon"
             android:layout_width="0dp"
@@ -53,6 +52,12 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             app:cardCornerRadius="4dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            app:cardElevation="10dp"
+            app:cardPreventCornerOverlap="false"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -85,6 +90,13 @@
             android:elevation="4dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            app:cardCornerRadius="4dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            app:cardElevation="10dp"
+            app:cardPreventCornerOverlap="false"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -92,7 +104,7 @@
 
                 <ImageView
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_science"
+                    android:src="@drawable/ic_baseline_business_24"
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
                 <TextView
@@ -115,13 +127,20 @@
             android:elevation="4dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            app:cardCornerRadius="4dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            app:cardElevation="10dp"
+            app:cardPreventCornerOverlap="false"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:src="@drawable/ic_science"
+                    android:src="@drawable/ic_sports"
                     android:layout_centerHorizontal="true"
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
@@ -145,13 +164,20 @@
             android:elevation="4dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            app:cardCornerRadius="4dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            app:cardElevation="10dp"
+            app:cardPreventCornerOverlap="false"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:src="@drawable/ic_science"
+                    android:src="@drawable/ic_tech"
                     android:layout_centerHorizontal="true"
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
@@ -175,13 +201,20 @@
             android:elevation="4dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            app:cardCornerRadius="4dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            app:cardElevation="10dp"
+            app:cardPreventCornerOverlap="false"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:src="@drawable/ic_science"
+                    android:src="@drawable/ic_bbc"
                     android:layout_centerHorizontal="true"
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
@@ -205,13 +238,20 @@
             android:elevation="4dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            app:cardCornerRadius="4dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            app:cardElevation="10dp"
+            app:cardPreventCornerOverlap="false"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:src="@drawable/ic_science"
+                    android:src="@drawable/ic_toi"
                     android:layout_centerHorizontal="true"
                     android:layout_width="100dp"
                     android:layout_height="100dp" />
@@ -237,40 +277,36 @@
         android:layout_weight="1.5"
         android:rowCount="1"
         android:columnCount="1"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:clipToPadding="false"
+        android:clipChildren="false"
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/farmer_icon"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="10dp"
-            android:elevation="4dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
+        >
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             >
+            <ImageView
 
-            <RelativeLayout
-                android:layout_marginTop="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:id="@+id/farmer_img"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_trending"
+                android:layout_marginTop="-10dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+            <TextView
+                android:layout_below="@+id/farmer_img"
+                android:layout_marginTop="-5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Farmer Protest"
+                android:textSize="20sp"
+                />
+        </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/farmer_img"
-                    android:src="@drawable/ic_science"
-                    android:layout_marginTop="-10dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
-                <TextView
-                    android:layout_below="@id/farmer_img"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="-5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Farmer Protest"
-                    android:textSize="20sp"
-                    />
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+
     </GridLayout>
 </LinearLayout>

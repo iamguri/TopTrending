@@ -20,7 +20,7 @@ class TimesOfIndiaActivity : AppCompatActivity(), NewsItemClicked {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycler_view)
+        setContentView(R.layout.toi_recycler)
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
 

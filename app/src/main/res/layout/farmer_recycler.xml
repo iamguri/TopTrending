@@ -8,13 +8,19 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:title="Top News in Science Section"
-        app:titleMarginStart="60dp"
-        app:titleTextColor="@color/black"
-        android:background="?attr/colorPrimary"
-        tools:ignore="HardcodedText,MissingConstraints" />
+        android:minHeight="?attr/actionBarSize"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Farmer Protest News"
+            android:layout_gravity="center"
+            android:id="@+id/toolbar_title"
+            android:textSize="20sp"/>
+    </androidx.appcompat.widget.Toolbar>
+
 
     <androidx.recyclerview.widget.RecyclerView
 

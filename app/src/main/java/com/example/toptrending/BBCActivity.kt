@@ -20,7 +20,7 @@ class BBCActivity : AppCompatActivity(), NewsItemClicked {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycler_view)
+        setContentView(R.layout.bbc_recycler)
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
 
@@ -32,13 +32,15 @@ class BBCActivity : AppCompatActivity(), NewsItemClicked {
         recyclerView.adapter = mAdapter
     }
 
+
     private fun fetchData() {
-        val url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=9485dbed563145c5b58b6800baf4c4be"
-        val jsonObjectRequest = object: JsonObjectRequest(
+        val url = "https://saurav.tech/NewsAPI/everything/bbc-news.json"
+//        val url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=9485dbed563145c5b58b6800baf4c4be"
+        val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,
             url,
             null,
-            Response.Listener {
+            {
                 val newsJsonArray = it.getJSONArray("articles")
                 val newsArray = ArrayList<News>()
                 for(i in 0 until newsJsonArray.length()) {
@@ -50,31 +52,69 @@ class BBCActivity : AppCompatActivity(), NewsItemClicked {
                         newsJsonObject.getString("urlToImage"),
                         newsJsonObject.getString("description"),
                         newsJsonObject.getString("publishedAt")
-//                        newsJsonObject.getString("source")
                     )
                     newsArray.add(news)
                 }
+
                 mAdapter.updateNews(newsArray)
             },
-            Response.ErrorListener {
-                Toast.makeText(this, "Error Fetching News", Toast.LENGTH_LONG).show()
-            }
+            {
+                Toast.makeText(this, "Oh Snap!! looks like something is wrong..", Toast.LENGTH_SHORT).show()
 
-        ) {
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                headers["User-Agent"] = "Mozilla/5.0"
-                return headers
             }
-        }
+        )
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
-
-
 
     override fun onItemClicked(item: News) {
         val builder =  CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(item.url))
     }
+
+//    private fun fetchData() {
+//        val url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=9485dbed563145c5b58b6800baf4c4be"
+//        val jsonObjectRequest = object: JsonObjectRequest(
+//            Request.Method.GET,
+//            url,
+//            null,
+//            Response.Listener {
+//                val newsJsonArray = it.getJSONArray("articles")
+//                val newsArray = ArrayList<News>()
+//                for(i in 0 until newsJsonArray.length()) {
+//                    val newsJsonObject = newsJsonArray.getJSONObject(i)
+//                    val news = News(
+//                        newsJsonObject.getString("title"),
+//                        newsJsonObject.getString("author"),
+//                        newsJsonObject.getString("url"),
+//                        newsJsonObject.getString("urlToImage"),
+//                        newsJsonObject.getString("description"),
+//                        newsJsonObject.getString("publishedAt")
+////                        newsJsonObject.getString("source")
+//                    )
+//                    newsArray.add(news)
+//                }
+//                mAdapter.updateNews(newsArray)
+//            },
+//            Response.ErrorListener {
+//                Toast.makeText(this, "Error Fetching News", Toast.LENGTH_LONG).show()
+//            }
+//
+//        ) {
+//            override fun getHeaders(): MutableMap<String, String> {
+//                val headers = HashMap<String, String>()
+//                headers["User-Agent"] = "Mozilla/5.0"
+//                return headers
+//            }
+//        }
+//        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+//    }
+//
+//
+//
+//    override fun onItemClicked(item: News) {
+//        val builder =  CustomTabsIntent.Builder()
+//        val customTabsIntent = builder.build()
+//        customTabsIntent.launchUrl(this, Uri.parse(item.url))
+//    }
 }

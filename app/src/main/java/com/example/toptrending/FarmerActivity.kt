@@ -20,7 +20,7 @@ class FarmerActivity : AppCompatActivity(), NewsItemClicked {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycler_view)
+        setContentView(R.layout.farmer_recycler)
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
 
@@ -30,18 +30,20 @@ class FarmerActivity : AppCompatActivity(), NewsItemClicked {
 
         mAdapter = NewsListAdapter(this)
         recyclerView.adapter = mAdapter
+
+
     }
 
     private fun fetchData() {
-        val url = "https://newsapi.org/v2/everything?q=farmer&apiKey=9485dbed563145c5b58b6800baf4c4be"
-        val jsonObjectRequest = object: JsonObjectRequest(
+        val url ="https://newsapi.org/v2/everything?q=farmer&apiKey=6f05a43b852841dba1b77fc941d95ac7"
+        val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,
             url,
             null,
-            Response.Listener {
+            {
                 val newsJsonArray = it.getJSONArray("articles")
                 val newsArray = ArrayList<News>()
-                for(i in 0 until newsJsonArray.length()) {
+                for (i in 0 until newsJsonArray.length()) {
                     val newsJsonObject = newsJsonArray.getJSONObject(i)
                     val news = News(
                         newsJsonObject.getString("title"),
@@ -50,30 +52,21 @@ class FarmerActivity : AppCompatActivity(), NewsItemClicked {
                         newsJsonObject.getString("urlToImage"),
                         newsJsonObject.getString("description"),
                         newsJsonObject.getString("publishedAt")
-//                        newsJsonObject.getString("source")
                     )
                     newsArray.add(news)
                 }
+
                 mAdapter.updateNews(newsArray)
             },
-            Response.ErrorListener {
-                Toast.makeText(this, "Error Fetching News", Toast.LENGTH_LONG).show()
+            {
+                Toast.makeText(this, "Oh Snap!! looks like something is wrong..", Toast.LENGTH_LONG).show()
             }
-
-        ) {
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                headers["User-Agent"] = "Mozilla/5.0"
-                return headers
-            }
-        }
+        )
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 
-
-
     override fun onItemClicked(item: News) {
-        val builder =  CustomTabsIntent.Builder()
+        val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(item.url))
     }

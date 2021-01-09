@@ -20,7 +20,7 @@ class TopTrendingActivity : AppCompatActivity(), NewsItemClicked {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycler_view)
+        setContentView(R.layout.headlines_recycler)
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
 

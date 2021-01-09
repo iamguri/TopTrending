@@ -1,12 +1,14 @@
 package com.example.toptrending
 
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -20,6 +22,9 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
 
     private val items: ArrayList<News>  = ArrayList()
 
+    private lateinit var progressBar: ProgressBar
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_view, parent, false)
         val viewHolder = NewsViewHolder(view)
@@ -27,6 +32,7 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
             listener.onItemClicked(items[viewHolder.adapterPosition])
         }
         return viewHolder
+
     }
 
     override fun getItemCount(): Int {
@@ -52,7 +58,6 @@ class NewsListAdapter(private val listener: NewsItemClicked): RecyclerView.Adapt
                 target: Target<Drawable>?,
                 isFirstResource: Boolean
             ): Boolean {
-
                 return false
             }
 
@@ -89,3 +94,4 @@ class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 interface NewsItemClicked {
     fun onItemClicked(item: News)
 }
+

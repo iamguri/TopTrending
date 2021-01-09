@@ -1,14 +1,19 @@
 package com.example.toptrending
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ProgressBar
+import androidx.browser.customtabs.CustomTabsIntent
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_view.*
 
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -57,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 //        Farmer Protest
-        farmer_icon.setOnClickListener{
+        farmer_img.setOnClickListener{
 //            progress_bar.visibility = View.VISIBLE
             val intent = Intent(this, FarmerActivity::class.java)
             startActivity(intent)
